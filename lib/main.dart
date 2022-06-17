@@ -1,5 +1,4 @@
 import 'package:ecommerce/screens/buttom_bar.dart';
-import 'package:ecommerce/screens/cart.dart';
 import 'package:flutter/material.dart';
 
 void main() {

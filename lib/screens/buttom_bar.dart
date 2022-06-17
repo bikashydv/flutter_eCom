@@ -12,28 +12,38 @@ class BottomBarScreen extends StatefulWidget {
 }
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
-  List<Map<String, Widget>> _pages = [];
+  List<Map<String, dynamic>> _pages = [] ;
   int _selectedPageIndex = 0;
-  // late String name;
+  // late String name;   
+
   // String? cc;
 
   @override
   void initState() {
-    _pages = [
+    _pages = [ 
       {
         'page': Home(),
+        'title': 'Home screen'
       },
       {
         'page': Feeds(),
+       'title': 'Feeds screen'
+
       },
       {
         'page': Search(),
+        'title': 'Search screen'
+
       },
       {
         'page': Cart(),
+        'title': 'Cart screen'
+
       },
       {
         'page': UserInfo(),
+        'title': 'Userinfo screen'
+
       },
     ];
     super.initState();
@@ -50,8 +60,10 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     // name = "Bikash";
     // String? name;
     // print(name);
-
+    
     return Scaffold(
+      appBar: AppBar(centerTitle: true,
+      title: Text(_pages[_selectedPageIndex]['title']),),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomAppBar(
         // color: Colors.white,
@@ -74,7 +86,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               onTap: _selectPage,
               backgroundColor: Theme.of(context).primaryColor,
               unselectedItemColor: Theme.of(context).textSelectionColor,
-              selectedItemColor: Colors.purple,
+              selectedItemColor: Colors.green,
               currentIndex: _selectedPageIndex,
               items: [
                 BottomNavigationBarItem(
@@ -88,7 +100,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                 BottomNavigationBarItem(
                   activeIcon: null,
                   icon: Icon(null),
-                  label: 'Search',
+                  label: 'Searc h',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
@@ -110,7 +122,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FloatingActionButton(
-          backgroundColor: Colors.purple,
+          backgroundColor: Colors.blue,
           hoverElevation: 10,
           splashColor: Colors.grey,
           tooltip: 'Search',
