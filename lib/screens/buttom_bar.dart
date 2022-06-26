@@ -1,6 +1,8 @@
+import 'package:ecommerce/consts/my_icons.dart';
 import 'package:ecommerce/screens/search.dart';
 import 'package:ecommerce/screens/user_info.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 import 'cart.dart';
 import 'feeds.dart';
@@ -12,39 +14,20 @@ class BottomBarScreen extends StatefulWidget {
 }
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
-  List<Map<String, dynamic>> _pages = [] ;
+  List<Map<String, dynamic>> _pages = [];
   int _selectedPageIndex = 0;
-  // late String name;   
+  // late String name;
 
   // String? cc;
 
   @override
   void initState() {
-    _pages = [ 
-      {
-        'page': Home(),
-        'title': 'Home screen'
-      },
-      {
-        'page': Feeds(),
-       'title': 'Feeds screen'
-
-      },
-      {
-        'page': Search(),
-        'title': 'Search screen'
-
-      },
-      {
-        'page': Cart(),
-        'title': 'Cart screen'
-
-      },
-      {
-        'page': UserInfo(),
-        'title': 'Userinfo screen'
-
-      },
+    _pages = [
+      {'page': Home(), 'title': 'Home screen'},
+      {'page': Feeds(), 'title': 'Feeds screen'},
+      {'page': Search(), 'title': 'Search screen'},
+      {'page': Cart(), 'title': 'Cart screen'},
+      {'page': UserInfo(), 'title': 'Userinfo screen'},
     ];
     super.initState();
   }
@@ -60,10 +43,12 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     // name = "Bikash";
     // String? name;
     // print(name);
-    
+
     return Scaffold(
-      appBar: AppBar(centerTitle: true,
-      title: Text(_pages[_selectedPageIndex]['title']),),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(_pages[_selectedPageIndex]['title']),
+      ),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomAppBar(
         // color: Colors.white,
@@ -90,26 +75,26 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               currentIndex: _selectedPageIndex,
               items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
+                  icon: Icon(MyAppIcons.home),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.rss_feed),
+                  icon: Icon(MyAppIcons.rss),
                   label: 'Feeds',
                 ),
                 BottomNavigationBarItem(
                   activeIcon: null,
                   icon: Icon(null),
-                  label: 'Searc h',
+                  label: 'Search',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.shopping_bag,
+                    MyAppIcons.shoppingCart,
                   ),
                   label: 'Cart',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
+                  icon: Icon(MyAppIcons.user),
                   label: 'User',
                 ),
               ],
@@ -127,7 +112,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           splashColor: Colors.grey,
           tooltip: 'Search',
           elevation: 4,
-          child: Icon(Icons.search),
+          child: Icon(FeatherIcons.search),
           onPressed: () => setState(() {
             _selectedPageIndex = 2;
           }),

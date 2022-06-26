@@ -1,22 +1,39 @@
+import 'package:ecommerce/provider/dark_theme_provider.dart';
 import 'package:ecommerce/screens/buttom_bar.dart';
+import 'package:ecommerce/consts/theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
-}
+} 
 
 class MyApp extends StatelessWidget {
-  // const ({ Key? key }) : super(key: key);
+  DarkThemeProvider themeChangeProvider = DarkThemeProvider();
+  // const ({ Key? key }) : super(key: key); 
 
-  @override
+  @override 
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: BottomBarScreen(),
-    );
+
+   return MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_){
+        return themeChangeProvider;
+      })
+    ],
+    child: Consumer<DarkThemeProvider>(
+
+
+      builder: (context, ThemeData, child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme:  Styles.themeData(themeChangeProvider.darkTheme, context),
+          // theme: ThemeData(
+          //   primarySwatch: Colors.blue,                                   //theme//
+          //   visualDensity: VisualDensity.adaptivePlatformDensity,
+          // ),
+          home: BottomBarScreen(),
+        );
+      }
+    ));
   }
 }
