@@ -145,7 +145,7 @@ class _UserInfoState extends State<UserInfo> {
                       leading: Icon(Icons.mode_comment_rounded),
                       onChanged: (value) {
                         setState(() {
-                          themeChange.darkTheme= value;
+                          themeChange.darkTheme = value;
                         });
                       },
                       visualDensity: VisualDensity.comfortable,

@@ -9,6 +9,10 @@ class MyAppIcons {
   static IconData search = FeatherIcons.search;
   static IconData user = FeatherIcons.user;
   static IconData shoppingCart = FeatherIcons.shoppingCart;
+  static IconData bag = FeatherIcons.shoppingBag;
+  static IconData trash = FeatherIcons.trash;
+
+
 
   static IconData? wishlist;
 

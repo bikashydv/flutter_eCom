@@ -23,11 +23,26 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   @override
   void initState() {
     _pages = [
-      {'page': Home(), 'title': 'Home screen'},
-      {'page': Feeds(), 'title': 'Feeds screen'},
-      {'page': Search(), 'title': 'Search screen'},
-      {'page': Cart(), 'title': 'Cart screen'},
-      {'page': UserInfo(), 'title': 'Userinfo screen'},
+       {
+        'page': Home(),
+      },
+      {
+        'page': Feeds(),
+      },
+      {
+        'page': Search(),
+      },
+      {
+        'page': Cart(),
+      },
+      {
+        'page': UserInfo(),
+      },
+      // {'page': Home(), 'title': 'Home screen'},
+      // {'page': Feeds(), 'title': 'Feeds screen'},
+      // {'page': Search(), 'title': 'Search screen'},
+      // {'page': Cart(), 'title': 'Cart screen'},
+      // {'page': UserInfo(), 'title': 'Userinfo screen'},
     ];
     super.initState();
   }
@@ -45,10 +60,10 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     // print(name);
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(_pages[_selectedPageIndex]['title']),
-      ),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   title: Text(_pages[_selectedPageIndex]['title']),
+      // ),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomAppBar(
         // color: Colors.white,
@@ -89,7 +104,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    MyAppIcons.shoppingCart,
+                    MyAppIcons.bag,
                   ),
                   label: 'Cart',
                 ),
