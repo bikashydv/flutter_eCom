@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             title: 'Flutter Demo',
             theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-            // theme: ThemeData(
+            // theme: ThemeData( 
             //   primarySwatch: Colors.blue,                                   //theme//
             //   visualDensity: VisualDensity.adaptivePlatformDensity,
             // ),
@@ -50,3 +50,4 @@ class _MyAppState extends State<MyApp> {
         }));
   }
 }
+  
