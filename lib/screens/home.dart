@@ -1,11 +1,14 @@
 import 'package:backdrop/backdrop.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce/consts/colors.dart';
+import 'package:ecommerce/inner_screens/brands_navigation_rail%20copy.dart';
 import 'package:ecommerce/models/models.dart';
+import 'package:ecommerce/screens/popular_products.dart';
+import 'package:ecommerce/widget/blacklayer.dart';
 import 'package:ecommerce/widget/category.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -22,6 +25,7 @@ class _HomeState extends State<Home> {
     'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
   ];
 
+  int activeIndex = 0;
   // const ({ Key? key }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -56,28 +60,40 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-        backLayer: Center(
-          child: Text("Back Layer"),
-        ),
+        backLayer:BackLayerMenu(),
 
-        //
         frontLayer: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                  child: CarouselSlider(
-                options: CarouselOptions(
-                  aspectRatio: 1.7,
-                  viewportFraction: 1.0,
-                  enlargeCenterPage: true,
-                  scrollDirection: Axis.horizontal,
-                  autoPlay: true,
+                  child: Stack(alignment: Alignment.bottomCenter, children: [
+                CarouselSlider(
+                  options: CarouselOptions(
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        activeIndex = index;
+                      });
+                    },
+                    aspectRatio: 1.7,
+                    viewportFraction: 1.0,
+                    enlargeCenterPage: true,
+                    scrollDirection: Axis.horizontal,
+                    autoPlay: true,
+                  ),
+                  items: Category.catagories
+                      .map((category) => HeroCarouselCard(category: category))
+                      .toList(),
                 ),
-                items: Category.catagories
-                    .map((category) => HeroCarouselCard(category: category))
-                    .toList(),
-              )),
+
+                //slid dot animation
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: AnimatedSmoothIndicator(
+                      activeIndex: activeIndex, count: 'items'.length),
+                ),
+              ])),
+
               Padding(
                 padding: const EdgeInsets.all(9.0),
                 child: Text(
@@ -102,7 +118,7 @@ class _HomeState extends State<Home> {
 
               //
               Padding(
-                padding: const EdgeInsets.all(9.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
                     Text(
@@ -125,26 +141,74 @@ class _HomeState extends State<Home> {
                 ),
               ),
               //
-              Container(
-                height: 210,
-                width: MediaQuery.of(context).size.width * 0.95,
-                child: Swiper(
-                  itemCount: _brandImage.length,
-                  autoplay: true,
-                  onTap: (index) {},
-                  itemBuilder: (BuildContext ctx, int index) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                          color: Colors.blueGrey,
-                          child: Image.network(
-                            _brandImage[index],
-                            fit: BoxFit.fill,
-                          )),
-                    );
-                  },
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: 210,
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  child: Swiper(
+                    itemCount: _brandImage.length,
+                    autoplay: true,
+                    viewportFraction: 0.8,
+                    scale: 0.9,
+                    onTap: (index) {
+                      Navigator.of(context).pushNamed(
+                        BrandNavigationRailScreen.routeName,  //not orking properly
+                        arguments: {
+                          index,
+                          },
+                      );
+                    },
+                    itemBuilder: (BuildContext ctx, int index) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                            color: Colors.blueGrey,
+                            child: Image.network(
+                              _brandImage[index],
+                              fit: BoxFit.fill,
+                            )),
+                      );
+                    },
+                  ),
                 ),
-              )
+              ),
+
+              //for popular product
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      'Popular product',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
+                    ),
+                    Spacer(),
+                    FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                        ' View all...',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 15,
+                            color: Colors.red),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 285,
+                margin: EdgeInsets.symmetric(horizontal: 3),
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 8,
+                    itemBuilder: (BuildContext ctx, int index) {
+                      return PopularProducts();
+                    }),
+              ),
             ],
           ),
         ),
@@ -153,6 +217,7 @@ class _HomeState extends State<Home> {
   }
 }
 
+// this is  for  slide
 class HeroCarouselCard extends StatelessWidget {
   final Category category;
   // const HeroCarouselCard({Key? key}) : super(key: key);

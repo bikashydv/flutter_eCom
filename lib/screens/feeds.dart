@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class Feeds extends StatelessWidget {
+  // static String routeName;
+
+    static const routeName = '\cartRoute';
+
+
   // const ({ Key? key }) : super(key: key);
 
   @override

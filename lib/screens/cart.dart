@@ -9,13 +9,14 @@ import 'package:ecommerce/widget/cart_full.dart';
 
 
 class Cart extends StatelessWidget {
+    static const routeName = '\cartRoute';
+
   // const ({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List products = [];
-    return !products
-            .isEmpty // to check here is vale  hiven or not  than use this!
+    return products.isEmpty // to check here is vale  hiven or not  than use this!
         ? Scaffold(body: CartEmpty())
         : Scaffold(
             bottomSheet: checkoutSection(context),

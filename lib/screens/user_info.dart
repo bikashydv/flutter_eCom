@@ -1,5 +1,7 @@
 import 'package:ecommerce/consts/colors.dart';
+import 'package:ecommerce/consts/my_icons.dart';
 import 'package:ecommerce/provider/dark_theme_provider.dart';
+import 'package:ecommerce/screens/wishlist.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
@@ -115,6 +117,38 @@ class _UserInfoState extends State<UserInfo> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: userTitle('User Bag')),
+                    Divider(
+                      thickness: 1,
+                      color: Colors.grey,
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Theme.of(context).splashColor,
+                        child: ListTile(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(WishlistScreen.routeName),
+                          title: Text('Wishlist'),
+                          trailing: Icon(Icons.chevron_right_rounded),
+                          leading: Icon(MyAppIcons.cart),
+                        ),
+                      ),
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Theme.of(context).splashColor,
+                        child: ListTile(
+                          onTap: () {},
+                          title: Text('Cart'),
+                          trailing: Icon(Icons.chevron_right_rounded),
+                          leading: Icon(MyAppIcons.cart),
+                        ),
+                      ),
+                    ),
                     Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: userTitle('User Information')),

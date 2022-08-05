@@ -69,3 +69,19 @@ class CategoryWidget extends StatelessWidget {
     );
   }
 }
+
+
+
+// AnimatedSmoothIndicator(
+//                activeIndex: activeIndex, count: 'items'.length),
+
+
+
+              // options: CarouselOptions(
+              //      onPageChanged: (index, reason) {
+              //        setState(() {
+              //          activeIndex = index;
+              //         });
+
+
+                                 // alignment: Alignment.bottomCenter,
